@@ -1,0 +1,99 @@
+<body>
+    <div>
+        <h2>Intro to Kafka</h2>
+        <p>
+            Kafka provides the functionality of a messaging system. It maintains feeds of messages in categories called topics.
+            A producer publishes messages to a topic. These messages is processed by a consumer after subscribing to a topic.
+        </p>
+    </div>
+
+    <div>
+        <h2>Run the Examples</h2>
+        <p>
+            This template provides examples to show you how to work with producers and consumers. You can run an example with the command:
+            <pre><code>sbt run</code></pre>
+            This will list all the examples for you to choose one.
+        </p>
+    </div>
+
+    <div>
+        <h2>Basics</h2>
+        <p>
+            All the producer examples can be found under the package <pre>example.producer</pre> . Let's start with a simple producer by running:
+            <pre><code>sbt runMain example.producer.ProducerExample</code></pre>
+            Your messages will be published to <pre>testTopic</pre> topic each time you hit the enter key. If you want to see if the messages really sent,
+            you can check it by running: <pre><code>sbt runMain example.consumer.ConsumerChunkExample</code></pre> in another terminal. This will list all the messages
+            published to <pre>testTopic</pre> topic.
+
+            Please note that you need a running kafka cluster to run the examples. You need to update configuration file in
+            <pre><code>src/main/resources/application.conf</code></pre> and change these keys:
+            <pre><code>
+                consumer.zookeeper.connect = ""
+                consumer.host = ""
+                consumer.port = ""
+
+                producer.metadata.broker.list = ""
+            </code></pre>
+        </p>
+    </div>
+
+    <div>
+        <h2>Producers</h2>
+        <p>
+            Constructing a producer requires three things:
+            <ul>
+                <li>Config</li>
+                <li>Key Type</li>
+                <li>Value Type</li>
+            </ul>
+        </p>
+
+        Here's how it looks in code:
+        <pre><code>
+            val config = new ProducerConfig(new java.util.Properties())
+            new KafkaProducer[K, V](config)</code></pre>
+
+        <p>
+            There are two keys need to be present in config for a producer: <pre>metadata.broker.list</pre> and <pre>serializer.class</pre> .
+
+            To publish a message your producer will need to know the address of at least one broker.<pre>metadata.broker.list</pre> key should be set
+            so Kafka can get information about the cluster from these brokers.
+
+            Producers serialize messages before sending them. <pre>serializer.class</pre> config must be set to tell producer which serializer to use.
+            Kafka defines some encoders to use for basic types like <pre>kafka.serializer.StringEncoder</pre> or <pre>kafka.serializer.DefaultEncoder</pre> .
+            If you want to serialize custom classes you should create an encoder extending the <pre>kafka.serializer.Encoder</pre> trait. You'll need to define
+            a method to convert your message to <pre>Array[Byte]</pre>.
+        </p>
+
+        <p>
+            Keys are used to partition the data you publish. Kafka partitions the data between multiple servers for the scalability purposes.
+            If you want to learn more please refer to kafka <a href="http://kafka.apache.org/documentation.html">documentation</a>.
+        </p>
+    </div>
+
+    <div>
+        <h2>Consumers</h2>
+        <p>
+            There are two ways to consume from a topic.You can either use the <pre>high level api</pre> or <pre>simple consumer api</pre>.
+            Examples provided for both of them in <pre>example.consumer.ConsumerStreamExample</pre> and <pre>example.consumer.ConsumerChunkExample</pre> .
+        </p>
+
+        <p>
+            High level api is easier to work with then SimpleConsumer. It just requires a config. <pre>zookeeper.connect</pre> and
+            <pre>group.id</pre> keys must be set at minimum in the config. You can learn more
+            from <a href="http://kafka.apache.org/documentation.html#consumerconfigs">documentation</a>.
+        <br>
+
+            Creating a consumer looks like this: <pre><code>
+                val config = new ConsumerConfig(new java.util.Properties())
+                val consumer = kafka.consumer.Consumer.create(config)
+            </code></pre>
+
+            Received messages should be decoded first by using a decoder.
+            Again <pre>kafka.serializer.StringDecoder</pre> and <pre>kafka.serializer.DefaultDecoder</pre> are already defined for basic types.
+            If you need to work with custom types you should create a decoder extending the class <pre>kafka.serializer.Decoder</pre> to convert from <pre>Array[Byte]</pre> to your type.
+
+            </code></pre>
+        </p>
+    </div>
+</body>
