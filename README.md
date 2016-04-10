@@ -3,6 +3,13 @@
 	like mongodb and cassandra...
  
 
+
+	TODO
+
+	Integrate kafka with Twitter. DONE!
+	Integrate with spark-streaming.PENDING
+	Integrate with Mongo.PENDING
+	Integrate with Cassandra.PENDING
 Interesting links
 
 	http://derekwyatt.org/2011/09/01/heres-one-of-the-reasons-why-monads-are-awesome/
