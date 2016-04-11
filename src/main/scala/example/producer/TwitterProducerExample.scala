@@ -115,7 +115,7 @@ object TwitterProducer {
       val data = DataObjectFactory.getRawJSON(status)
       
       parse(data)
-      println
+      //println
       strProducer.send(data)
     }
 

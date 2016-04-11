@@ -12,10 +12,12 @@ libraryDependencies ++= Seq(
    "org.scala-tools.testing" % "specs_2.8.0" % "1.6.5" % "test",
    "org.apache.spark" % "spark-streaming-kafka_2.10" % "1.6.1" ,
    "org.apache.spark" % "spark-core_2.10" % "1.6.1" ,
-   "org.apache.spark" % "spark-streaming_2.10" % "1.6.1"
-
-
-
+   "org.apache.spark" % "spark-streaming_2.10" % "1.6.1",
+   "org.apache.spark" % "spark-sql_2.10" % "1.6.1",
+   "org.apache.spark" % "spark-mllib_2.10" % "1.6.1",
+   "com.google.code.gson" % "gson" % "2.6.2",
+   "commons-cli" % "commons-cli" % "1.3.1",
+   "com.stratio.datasource" % "spark-mongodb_2.10" % "0.11.1"
 )
 
 packAutoSettings

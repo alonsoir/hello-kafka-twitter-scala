@@ -2,13 +2,17 @@
 	and twitter first, after that i am going to integrate it with spark-streaming and some nosql database 
 	like mongodb and cassandra...
  
+	The project uses sbt-pack to create some unix commands, so, before start running, make sure there is a kafka 
+	broker, a mongo instance and a cassandra instance running in your local machine, i assure you that your 
+	machine is going to need a lot of memory, like 16 GB at least, but there are not any memory leak, i think...
 
+	
 
 	TODO
 
 	Integrate kafka with Twitter. DONE!
-	Integrate with spark-streaming.PENDING
-	Integrate with Mongo.PENDING
+	Integrate with spark-streaming.DONE!
+	Integrate with Mongo.DONE!
 	Integrate with Cassandra.PENDING
 Interesting links
 

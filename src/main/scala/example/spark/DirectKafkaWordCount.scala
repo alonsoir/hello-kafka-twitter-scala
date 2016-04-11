@@ -34,8 +34,6 @@ object DirectKafkaWordCount {
       System.exit(1)
     }
 
-    //StreamingExamples.setStreamingLogLevels()
-
     val Array(brokers, topics) = args
 
     // Create context with 2 second batch interval
@@ -45,8 +43,7 @@ object DirectKafkaWordCount {
     // Create direct kafka stream with brokers and topics
     val topicsSet = topics.split(",").toSet
     val kafkaParams = Map[String, String]("metadata.broker.list" -> brokers)
-    val messages = KafkaUtils.createDirectStream[String, String, StringDecoder, StringDecoder](
-      ssc, kafkaParams, topicsSet)
+    val messages = KafkaUtils.createDirectStream[String, String, StringDecoder, StringDecoder](ssc, kafkaParams, topicsSet)
 
     // Get the lines, split them into words, count the words and print
     val lines = messages.map(_._2)
