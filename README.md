@@ -118,12 +118,32 @@
 		fetch.purgatory.purge.interval.requests = 1000
 		...
 
+	Lets check if we have data stored in the mongo instance:
+
+	MacBook-Pro-Retina-de-Alonso:~ aironman$ mongo
+	MongoDB shell version: 3.2.4
+	connecting to: test
+	Server has startup warnings: 
+	2016-04-12T11:05:18.142+0200 I CONTROL  [initandlisten] 
+	2016-04-12T11:05:18.142+0200 I CONTROL  [initandlisten] ** WARNING: soft rlimits too low. Number of files is 256, should be at least 1000
+	> use alonsodb;
+	switched to db alonsodb
+	> db.tweets.find();
+	{ "_id" : ObjectId("56faadd88d6a6aba39593d73"), "id" : ISODate("2016-03-29T16:31:20.468Z"), "tweets" : "description {\n  \"createdAt\": \"Mar 29, 2016 6:31:12 PM\",\n  \"id\": 714852418983370752,\n  \"text\": \"RT @mo_younapi: 明日は大阪だよ！\\n物販では、ゆるめるモ！グッズのようなぴグッズも販売されるかも！缶バッジとTシャツとリストバンドかな？\\n\\nそれと、出番後にも15分くらいだけ物販やるかも！その場合はサインなしツーチェキのみかなあ。\",\n  \"source\": \"\\u003ca href\\u003d\\\"http://twitter.com\\\" rel\\u003d\\\"nofollow\\\"\\u003eTwitter Web Client\\u003c/a\\u003e\",\n  \"isTruncated\": false,\n  \"inReplyToStatusId\": -1,\n  \"inReplyToUserId\": -1,\n  \"isFavorited\": false,\n  \"retweetCount\": 0,\n  \"isPossiblySensitive\": false,\n  \"contributorsIDs\": [],\n  \"retweetedStatus\": {\n    \"createdAt\": \"Mar 29, 2016 5:22:25 PM\",\n    \"id\": 714835107480113153,\n    \"text\": \"明日は大阪だよ！\\n物販では、ゆるめるモ！グッズのようなぴグッズも販売されるかも！缶バッジとTシャツとリストバンドかな？\\n\\nそれと、出番後にも15分くらいだけ物販やるかも！その場合はサインなしツーチェキのみかなあ。\",\n    \"source\": \"\\u003ca href\\u003d\\\"http://twitter.com/download/iphone\\\" rel\\u003d\\\"nofollow\\\"\\u003eTwitter for iPhone\\u003c/a\\u003e\",\n    \"isTruncated\": false,\n    \"inReplyToStatusId\": 714679679182090240,\n    \"inReplyToUserId\": 1883898606,\n    \"isFavorited\": false,\n    \"inReplyToScreenName\": \"mo_younapi\",\n    \"retweetCount\": 6,\n    \"isPossiblySensitive\": false,\n    \"contributorsIDs\": [],\n    \"userMentionEntities\": [],\n    \"urlEntities\": [],\n    \"hashtagEn
+	...
+	> db.tweets.count();
+	15168
+
+	The mongo instance has data, yuhu! :)
+
+	
+
 	TODO
 
 	Integrate kafka with Twitter. DONE!
 	Integrate with spark-streaming.DONE!
 	Integrate with Mongo.DONE!
-	Integrate the kafka connector with yaml dependencies i can change in real time the initial parameters...
+	Integrate the kafka connector with yaml dependencies so i can change in real time the initial parameters...
 	Integrate with Cassandra.PENDING
 Interesting links
 
