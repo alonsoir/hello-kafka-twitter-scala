@@ -141,10 +141,18 @@
 	TODO
 
 	Integrate kafka with Twitter. DONE!
+	
 	Integrate with spark-streaming.DONE!
+	
 	Integrate with Mongo.DONE!
-	Integrate the kafka connector with yaml dependencies so i can change in real time the initial parameters...
+	
+	Integrate the kafka connector with yaml dependencies 
+	so i can change in real time the initial parameters..PENDING
+	Check TwitterStream.scala TwitterClient object...
+
 	Integrate with Cassandra.PENDING
+	Use the library from stratio...
+	
 Interesting links
 
 	http://derekwyatt.org/2011/09/01/heres-one-of-the-reasons-why-monads-are-awesome/

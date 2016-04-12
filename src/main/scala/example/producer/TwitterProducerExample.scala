@@ -7,7 +7,7 @@ import example.utils.TwitterClient
 import org.codehaus.jackson._
 import org.codehaus.jackson.JsonToken._
 
-
+//update this case class to save every field you want to parse...
 case class SimpleParsed(id: Long, text: String)
 
 object TwitterProducer {
@@ -100,7 +100,7 @@ object TwitterProducer {
         }
         token = parser.nextToken()
       }
-      //creating the object, i can send it to broker...
+      //creating the object, i can send it to the broker...
       if (textOpt.isDefined && idOpt.isDefined) {
         Some(SimpleParsed(idOpt.get, textOpt.get))
       } else {
@@ -116,6 +116,7 @@ object TwitterProducer {
       
       parse(data)
       //println
+      //sending data to the broker...
       strProducer.send(data)
     }
 
